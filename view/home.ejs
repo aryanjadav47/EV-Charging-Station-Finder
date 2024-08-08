@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("./part/head") %>
+    <title>Ev-PlugFinder</title>
+</head>
+<body>
+    <%- include("./part/nav") %>
+    
+    <section class="text-gray-600 body-font" id="home">
+        <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
+          <div class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
+            <h1 class="mb-6 max-w-lg font-sans text-3xl font-bold tracking-tight text-slate-700 sm:text-5xl sm:leading-snug">Find Your Nearest
+              <br class="hidden lg:inline-block">
+              <span class="inline-block text-green-500">EV Charging Stations</span>
+            </h1>
+            <p class="mb-8 max-w-lg font-sans tracking-tight  sm:leading-snug leading-relaxed">Easily locate electric vehicle charging stations with our comprehensive and user-friendly &nbsp;map. &nbsp;Whether &nbsp;you're &nbsp;planning &nbsp;a &nbsp;trip &nbsp;or &nbsp;just need a quick charge, our service ensures you find the best and most convenient charging options. Start your journey with confidence and keep your EV powered up wherever you go.</p>
+            <div class="flex justify-center">
+              <form method="get" action="/finder"><button class="inline-flex h-12 w-full items-center justify-center rounded-full bg-green-500 px-6 font-medium tracking-wide text-white shadow-md outline-none transition duration-200 hover:bg-green-400 focus:ring sm:w-auto">Find</button></form>
+            </div>
+          </div>
+          <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
+            <!-- <img class="object-cover object-center rounded" alt="hero" src="https://png.pngtree.com/thumb_back/fh260/background/20230713/pngtree-d-render-of-electric-car-charging-plug-on-beige-and-white-image_3861617.jpg"> -->
+            <div class="grid min-h-[140px] w-full place-items-center overflow-x-scroll rounded-lg p-6 lg:overflow-visible">
+              <figure class="relative w-full h-96">
+                <img class="object-cover object-center w-full h-full rounded-xl"
+                  src="https://png.pngtree.com/thumb_back/fh260/background/20230713/pngtree-d-render-of-electric-car-charging-plug-on-beige-and-white-image_3861617.jpg"
+                  alt="nature image" />
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+      <hr>
+
+      <!-- Features -->
+      <section class="bg-white py-24" id="features">
+          <div class="container mx-auto text-center px-4">
+              <h2 class="text-3xl font-bold font-sans tracking-tight text-slate-700 mb-8">Features</h2>
+              <div class="flex flex-wrap -mx-4">
+                  <div class="w-full md:w-1/3 px-4 mb-8">
+                      <div class="bg-white p-8 shadow-md rounded-md">
+                          <i class="fa-solid fa-magnifying-glass-location text-4xl text-blue-500 mb-4"></i>
+                          <h3 class="text-xl font-bold text-gray-800 mb-2">Find Charging Stations</h3>
+                          <p class="text-gray-600">Location-based Search: Users can search for charging stations based on their current location or a specific destination.</p><br>
+                      </div>
+                  </div>
+                  <div class="w-full md:w-1/3 px-4 mb-8">
+                      <div class="bg-white p-8 shadow-md rounded-md">
+                          <i class="fa-solid fa-circle-info text-4xl text-blue-500 mb-4"></i>
+                          <h3 class="text-xl font-bold text-gray-800 mb-2">Detail Station Information</h3>
+                          <p class="text-gray-600">Trip Planner: Plan a route with charging stops based on your vehicle's range and the availability of charging stations along the way.</p>
+                      </div>
+                  </div>
+                  <div class="w-full md:w-1/3 px-4 mb-8">
+                      <div class="bg-white p-8 shadow-md rounded-md">
+                          <i class="fa-solid fa-charging-station text-4xl text-blue-500 mb-4"></i>
+                          <h3 class="text-xl font-bold text-gray-800 mb-2">Sustainability Tracking</h3>
+                          <p class="text-gray-600">Eco-friendly Features: Information about the environmental impact of EV charging and how users are contributing to reducing carbon emissions.</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+      <hr>
+
+      <!-- about -->
+
+<div class="relative flex min-h-screen flex-col justify-center overflow-hidden bg-white py-6 sm:py-12" id="about">
+  <div class="w-full items-center mx-auto max-w-screen-lg">
+    <div class="group grid w-full grid-cols-2">
+       <div>
+        <div class="pr-12">
+          <p class="peer mb-6 text-gray-400">
+            At EV Plug Finder, our mission is to simplify the process of finding electric vehicle charging stations. We are dedicated to supporting the transition to sustainable transportation by providing a reliable and user-friendly platform for EV owners. Our goal is to make charging your electric vehicle as convenient and stress-free as possible, ensuring you can travel with confidence and ease.
+          </p>
+          <p class="mb-6 text-gray-400">
+            Founded by a group of EV enthusiasts, EV Plug Finder was born out of the need for a comprehensive and accessible resource for locating charging stations. We understand the challenges of maintaining an electric vehicle on the road and are committed to helping our users overcome these hurdles. With our extensive database and intuitive interface, we strive to be your trusted companion on every electric journey.
+          </p>
+        </div>
+      </div>
+      <div class="pr-16 relative flex flex-col before:block before:absolute before:h-1/6 before:w-4 before:bg-blue-500 before:bottom-0 before:right-0 before:rounded-lg  before:transition-all group-hover:before:bg-orange-300 overflow-hidden">
+        <div class="absolute top-0 right-0 bg-green-500 w-4/6 px-12 py-14 flex flex-col justify-center rounded-xl group-hover:bg-sky-600 transition-all ">
+          <span class="block mb-10 font-bold group-hover:text-orange-300">HERE WE ARE</span>
+          <h2 class="text-white font-bold text-3xl">
+            "Charge Up and Go Green: Your EV Charging Guide"
+          </h2>
+        </div>
+        <a class="font-bold text-sm flex mt-2 mb-8 items-center gap-2" href="">
+          <span>ABOUT US</span>
+          
+        </a>
+        <div class="rounded-xl overflow-hidden">
+          <img src="https://i.ibb.co/KqCYhRy/plug.jpg" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <hr>
+      <!-- contact -->
+
+<div class="flex min-h-screen items-center justify-start bg-white" id="contact">
+  <div class="mx-auto w-full max-w-lg">
+    <h1 class="text-4xl font-sans tracking-tight text-slate-700 font-medium">Contact us</h1>
+    <p class="mt-3">We don't provide your information to anyone.</p>
+
+    <form action="/contact" method="post" class="mt-10">
+      <div class="grid gap-6 sm:grid-cols-2">
+        <div class="relative z-0">
+          <input type="text" name="name" class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0" placeholder=" " />
+          <label class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">Your name</label>
+        </div>
+        <div class="relative z-0">
+          <input type="text" name="email" class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0" placeholder=" " />
+          <label class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">Your email</label>
+        </div>
+        <div class="relative z-0 col-span-2">
+          <textarea name="message" rows="5" class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0" placeholder=" "></textarea>
+          <label class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">Your message</label>
+        </div>
+      </div>
+      <button id="btn" type="submit" class="mt-5 rounded-md bg-green-500 px-10 py-2 text-white">Send Message</button>
+    </form>
+  </div>
+</div>
+      <!-- footer -->
+      <footer class="text-gray-600 body-font">
+        <div class="bg-gray-100">
+          <div class="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
+            <p class="text-gray-500 text-sm text-center sm:text-left">© 2024 EV Plug Finder —
+              <a href="https://github.com/aryanjadav47" rel="noopener noreferrer" class="text-gray-600 ml-1" target="_blank">@aryanjadav</a>
+            </p>
+            <span class="inline-flex sm:ml-auto sm:mt-0 mt-2 justify-center sm:justify-start">
+              <a class="text-gray-500">
+                <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                  <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+                </svg>
+              </a>
+              <a class="ml-3 text-gray-500">
+                <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                  <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+                </svg>
+              </a>
+              <a class="ml-3 text-gray-500">
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+                </svg>
+              </a>
+              <a class="ml-3 text-gray-500">
+                <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" class="w-5 h-5" viewBox="0 0 24 24">
+                  <path stroke="none" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
+                  <circle cx="4" cy="4" r="2" stroke="none"></circle>
+                </svg>
+              </a>
+            </span>
+          </div>
+        </div>
+      </footer>
+      <script>
+        let button=document.getElementById("btn").addEventListener("click",function(){
+          alert("feedback send succesfull!");
+        });
+      </script>
+</body>
+</html>
+

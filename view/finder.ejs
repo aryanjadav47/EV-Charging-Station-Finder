@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("./part/head") %>
+    <title>Find</title>
+</head>
+<body>
+    <%- include("./part/nav") %>
+
+      <div class="relative mx-auto px-4 pt-16 sm:max-w-xl md:max-w-full md:px-8 lg:py-32 xl:px-20">
+        <div class="mx-auto max-w-xl lg:max-w-screen-xl">
+          <div class="mb-16 text-center lg:mb-0 lg:max-w-lg lg:text-left">
+            <div class="mb-6 max-w-xl">
+              <div>
+                <p class="bg-teal-accent-400 mb-4 inline-block rounded-full bg-green-200 px-3 py-px text-sm font-semibold tracking-wider text-green-900">This is EV</p>
+              </div>
+              <h2 class="mb-6 max-w-lg font-sans text-3xl font-bold tracking-tight text-slate-700 sm:text-5xl sm:leading-snug">
+                Ready For Plug <br />
+                in
+                <span class="inline-block text-green-500">Your Vehicle</span>
+              </h2>
+              <p class="text-base text-gray-700 md:text-lg">Select your state and city to navigate right EV station information!</p>
+            </div>
+            
+            <div class="flex flex-col items-center justify-center space-y-2 sm:flex-row sm:space-y-0 sm:space-x-2 lg:justify-start">
+                <form id="searchForm" action="/search" method="post">
+                <select name="stateId" id="stateSelect"  data-hs-select='{
+                    "placeholder": "Select option...",
+                    "toggleTag": "<button type=\"button\" aria-expanded=\"false\"></button>",
+                    "toggleClasses": "hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 relative py-3 ps-4 pe-9 flex gap-x-2 text-nowrap w-full cursor-pointer bg-white border border-gray-200 rounded-lg text-start text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-neutral-600",
+                    "dropdownClasses": "mt-2 z-50 w-full max-h-72 p-1 space-y-0.5 bg-white border border-gray-200 rounded-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 dark:bg-neutral-900 dark:border-neutral-700",
+                    "optionClasses": "py-2 px-4 w-full text-sm text-gray-800 cursor-pointer hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800",
+                    "optionTemplate": "<div class=\"flex justify-between items-center w-full\"><span data-title></span><span class=\"hidden hs-selected:block\"><svg class=\"shrink-0 size-3.5 text-blue-600 dark:text-blue-500 \" xmlns=\"http:.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"20 6 9 17 4 12\"/></svg></span></div>",
+                    "extraMarkup": "<div class=\"absolute top-1/2 end-3 -translate-y-1/2\"><svg class=\"shrink-0 size-3.5 text-gray-500 dark:text-neutral-500 \" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m7 15 5 5 5-5\"/><path d=\"m7 9 5-5 5 5\"/></svg></div>"
+                  }' class="inline-flex h-10 w-full items-center justify-center rounded-lg border-2 border-green-500 px-10 font-semibold text-black-600 transition-colors duration-200 hover:border-y-green-400 hover:text-black-400 sm:w-auto">
+                    <option value="">Select a state</option>
+                    <% states.forEach(state => { %>
+                        <option value="<%= state._id %>"><%= state.name %></option>
+                    <% }) %>
+                  </select>&nbsp;
+                  <select name="cityId" id="citySelect" data-hs-select='{
+                    "placeholder": "Select option...",
+                    "toggleTag": "<button type=\"button\" aria-expanded=\"false\"></button>",
+                    "toggleClasses": "hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 relative py-3 ps-4 pe-9 flex gap-x-2 text-nowrap w-full cursor-pointer bg-white border border-gray-200 rounded-lg text-start text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-neutral-600",
+                    "dropdownClasses": "mt-2 z-50 w-full max-h-72 p-1 space-y-0.5 bg-white border border-gray-200 rounded-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 dark:bg-neutral-900 dark:border-neutral-700",
+                    "optionClasses": "py-2 px-4 w-full text-sm text-gray-800 cursor-pointer hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800",
+                    "optionTemplate": "<div class=\"flex justify-between items-center w-full\"><span data-title></span><span class=\"hidden hs-selected:block\"><svg class=\"shrink-0 size-3.5 text-blue-600 dark:text-blue-500 \" xmlns=\"http:.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"20 6 9 17 4 12\"/></svg></span></div>",
+                    "extraMarkup": "<div class=\"absolute top-1/2 end-3 -translate-y-1/2\"><svg class=\"shrink-0 size-3.5 text-gray-500 dark:text-neutral-500 \" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m7 15 5 5 5-5\"/><path d=\"m7 9 5-5 5 5\"/></svg></div>"
+                  }' class="inline-flex h-10 w-full items-center justify-center rounded-lg border-2 border-green-500 px-10 font-semibold text-black-600 transition-colors duration-200 hover:border-y-green-400 hover:text-black-400 sm:w-auto">
+                    <option value="">Select a city</option>
+                  </select><br><br>
+            
+            <button type="submit" ><a class="inline-flex h-12 w-full items-center justify-center rounded-full bg-green-500 px-6 font-medium tracking-wide text-white shadow-md outline-none transition duration-200 hover:bg-green-400 focus:ring sm:w-auto"> Search </a></button>
+                  </form>
+        </div>  
+        </div>
+          <div class="hidden h-full justify-center overflow-hidden lg:absolute lg:bottom-0 lg:right-0 lg:flex lg:w-1/2 lg:items-end lg:justify-start">
+            <svg class="h-auto w-auto" viewBox="0 0 200 200" xmlns="">
+              <defs>
+                <pattern id="img1" x="0" y="0" width="1" height="1">
+                  <image x="0" y="0" width="80%" height="80%" preserveAspectRatio="xMaxYMax slice" href="https://media.istockphoto.com/id/1564615208/photo/ev-charging-stations-or-electric-vehicle-recharging-stations-with-graphic-display.webp?b=1&s=170667a&w=0&k=20&c=u5jp4ljueX1-FlwpImgdqM1yRZifNDegHgixIfWbNWc=" />
+                </pattern>
+              </defs>
+      
+              <path fill="url(#img1)" d="M40,-62.6C52.2,-54.5,62.5,-43.9,66.9,-31.4C71.3,-18.9,69.6,-4.6,65.9,8.3C62.2,21.1,56.4,32.5,49.2,45.2C42.1,57.9,33.7,72.1,22.2,75.3C10.7,78.5,-3.9,70.7,-14.8,62.1C-25.7,53.5,-32.8,44.1,-44.9,35.8C-57,27.5,-74,20.3,-82.1,7.7C-90.3,-4.8,-89.5,-22.7,-80.8,-34.8C-72,-46.9,-55.2,-53.3,-40.4,-60.2C-25.6,-67,-12.8,-74.3,0.6,-75.2C13.9,-76.1,27.9,-70.6,40,-62.6Z" transform="translate(100 100)" />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <!-- component -->
+<div class="py-16 bg-white">
+  <div class="container m-auto px-6 space-y-8 md:px-12 lg:px-56">
+      <div class="m-auto text-center lg:w-7/12">
+          <h2 class="text-2xl text-gray-700 font-bold md:text-3xl">Find top charging station provider.</h2>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
+          <div class="p-5">
+              <img src="https://i.ibb.co/TkbNSnj/ezgif-7-3318ace583.png" class="" alt="">
+          </div>
+          <div class="p-8">
+              <img src="https://iconape.com/wp-content/png_logo_vector/torrent-power-logo.png" class="w-32 " alt="">
+          </div>
+          <div class="p-6">
+              <img src="https://asset.brandfetch.io/idEG0l46pG/idatz5U4xW.png?updated=1667935128051" class="w-32 " alt="">
+          </div>
+          <div class="p-9">
+              <img src="https://cdn.prod.website-files.com/65845678d690aaaf59a85f8d/658456f77aa15f21aaf0c0fb_Group%203509.svg" class="w-32 " alt="">
+          </div>
+          <div class="p-6">
+              <img src="https://www.amararajaeandm.com/images1/The%20New%20logo.png" class="w-42" alt="">
+          </div>
+          <div class="p-4">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/DELTA_Electronics_Logo.png/640px-DELTA_Electronics_Logo.png" class="w-32" alt="">
+          </div>
+          <div class="p-5">
+              <img src="https://i.ibb.co/C1tp7xR/ezgif-7-94c0231772.png" class="w-32" alt="">
+          </div>
+          <div class="p-4">
+              <img src="https://volttic.com/wp-content/uploads/2021/12/VOLTTIC-LOGO.png" class="w-32" alt="">
+          </div>
+      </div>
+  </div>
+</div>
+<hr>
+<!-- component -->
+<section class="text-gray-600 body-font">
+  <div class="container px-5 py-24 mx-auto">
+    <h2 class="text-3xl   font-sans  font-bold tracking-tight text-slate-700 sm:text-3xl sm:leading-snug mb-12 text-center">EV Charging Stations in Gujarat.</h2><br>
+    <div class="flex flex-wrap -m-4">
+      <div class="p-4 md:w-1/3">
+        <div class="h-full rounded-xl shadow-cla-blue bg-gradient-to-r from-indigo-50 to-blue-50 overflow-hidden">
+          <img class="lg:h-48 md:h-36 w-full object-cover object-center scale-110 transition-all duration-400 hover:scale-100" src="https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=nhXd_fAxAaiHuiiE6-Jtbg&cb_client=search.gws-prod.gps&w=408&h=240&yaw=359.92465&pitch=0&thumbfov=100" alt="blog">
+          <div class="p-6">
+            <h3 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">GUJARAT</h2>
+            <h2 class="title-font text-lg font-medium text-gray-600 mb-3"><i class="fa-solid fa-city"></i> - Ahmedabad</h1>
+            <h1 class="title-font text-lg font-medium text-gray-600 mb-3"><i class="fa-solid fa-charging-station"></i> - Tata Power Charging Station</h1>
+            <p class="leading-relaxed mb-3"><i class="fa-solid fa-location-dot"></i> - 217, Vastrapur Rd, Vastrapur, Ahmedabad, Gujarat 380054</p>
+            <p class="leading-relaxed mb-3"><i class="fa-solid fa-phone"></i> - +91 18008332233</p>
+            <p class="leading-relaxed mb-3"><i class="fa-solid fa-bolt"></i> - CHAdeMO· 25 kW, CCS · 25 kW</p>
+            <div class="flex items-center flex-wrap ">
+              <a type="button" href="https://www.google.com/maps/dir//Tata+Power+Charging+Station,+217,+Vastrapur+Rd,+Vastrapur,+Ahmedabad,+Gujarat+380054/@23.0398374,71.4769365,9z/data=!4m8!4m7!1m0!1m5!1m1!1s0x395e85bfa9b8dc11:0xc127b265546aa713!2m2!1d72.531624!2d23.0398374?entry=ttu" class="bg-gradient-to-r from-cyan-400 to-blue-400 hover:scale-105 drop-shadow-md  shadow-cla-blue px-4 py-1 rounded-lg"><i class="fa-solid fa-location-dot"></i> Map Navigate</a> 
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="p-4 md:w-1/3">
+        <div class="h-full rounded-xl shadow-cla-blue bg-gradient-to-r from-indigo-50 to-blue-50 overflow-hidden">
+          <img class="lg:h-48 md:h-36 w-full object-cover object-center scale-110 transition-all duration-400 hover:scale-100" src="https://lh5.googleusercontent.com/p/AF1QipMb-Xdk7KEYAaqgOQaYO62i673MAB6AgP7-y5au=w408-h272-k-no" alt="blog">
+          <div class="p-6">
+            <h3 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">GUJARAT</h2>
+            <h2 class="title-font text-lg font-medium text-gray-600 mb-3"><i class="fa-solid fa-city"></i> - Surat</h1>
+            <h1 class="title-font text-lg font-medium text-gray-600 mb-3"><i class="fa-solid fa-charging-station"></i> - SMC Charging Station</h1>
+            <p class="leading-relaxed mb-3"><i class="fa-solid fa-location-dot"></i> - 4RX8+HF6, Pandesara GIDC Main Road, GIDC, Trupte Nagar, Pandesara, Udhana, Surat, Gujarat 394220</p>
+            <p class="leading-relaxed mb-3"><i class="fa-solid fa-phone"></i> - not mention</p>
+            <p class="leading-relaxed mb-3"><i class="fa-solid fa-bolt"></i> - CCS · 60 kW</p>
+            <div class="flex items-center flex-wrap ">
+              <a type="button" href="https://www.google.com/maps/dir//4RX8%2BHF6+SMC+Charging+Station,+Pandesara+GIDC+Main+Road,+GIDC,+Trupte+Nagar,+Pandesara,+Udhana,+Surat,+Gujarat+394220/@21.1792315,72.7080342,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3be05152280c3be1:0xf9fc1ddb2b4f7af7!2m2!1d72.8161483!2d21.1489142?entry=ttu" class="bg-gradient-to-r from-cyan-400 to-blue-400 hover:scale-105 drop-shadow-md  shadow-cla-blue px-4 py-1 rounded-lg"><i class="fa-solid fa-location-dot"></i> Map Navigate</a> 
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="p-4 md:w-1/3">
+        <div class="h-full rounded-xl shadow-cla-blue bg-gradient-to-r from-indigo-50 to-blue-50 overflow-hidden">
+          <img class="lg:h-48 md:h-36 w-full object-cover object-center scale-110 transition-all duration-400 hover:scale-100" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLLipQAXI91mxRUCIRFGzb64Ptw4d2ZunlBw&s" alt="blog">
+          <div class="p-6">
+            <h3 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">GUJARAT</h2>
+            <h2 class="title-font text-lg font-medium text-gray-600 mb-3"><i class="fa-solid fa-city"></i> - Rajkot</h1>
+            <h1 class="title-font text-lg font-medium text-gray-600 mb-3"><i class="fa-solid fa-charging-station"></i> - Tata Power Charging Station</h1>
+            <p class="leading-relaxed mb-3"><i class="fa-solid fa-location-dot"></i> - Jai Ganesh MG, Rajkot - Gondal Hwy, opp. Krishna park, Vavdi, Kotharia, Rajkot, Gujarat 360003</p>
+            <p class="leading-relaxed mb-3"><i class="fa-solid fa-phone"></i> - 18008332233</p>
+            <p class="leading-relaxed mb-3"><i class="fa-solid fa-bolt"></i> - CHAdeMO · 25 kW, CCS · 25 kW</p>
+            <div class="flex items-center flex-wrap ">
+              <a type="button" href="https://www.google.com/maps/dir//Tata+Power+Charging+Station,+Jai+Ganesh+MG,+Rajkot+-+Gondal+Hwy,+opp.+Krishna+park,+Vavdi,+Kotharia,+Rajkot,+Gujarat+360003/@22.2275993,70.2738726,10z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3959cb587a3353e7:0x28f53daf5c94b04a!2m2!1d70.8012164!2d22.2275993?entry=ttu" class="bg-gradient-to-r from-cyan-400 to-blue-400 hover:scale-105 drop-shadow-md  shadow-cla-blue px-4 py-1 rounded-lg"><i class="fa-solid fa-location-dot"></i> Map Navigate</a> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- component -->
+<!-- This is an example component -->
+<div class="max-w-2xl mx-auto">
+
+	<footer class="p-4 bg-white rounded-lg shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800">
+		<span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024 <a href="/" class="hover:underline" target="_blank">EV Plug Finder™</a>. All Rights Reserved.
+    </span>
+		<ul class="flex flex-wrap items-center mt-3 sm:mt-0">
+			<li>
+				<a href="/#about" class="mr-4 text-sm text-gray-500 hover:underline md:mr-6 dark:text-gray-400">About</a>
+			</li>
+			<li>
+				<a href="/#contact" class="text-sm text-gray-500 hover:underline dark:text-gray-400">Contact</a>
+			</li>
+		</ul>
+	</footer><br>
+</div>
+      <script>
+        document.getElementById('stateSelect').addEventListener('change', function() {
+          fetch('/get-cities', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ stateId: this.value })
+          })
+          .then(response => response.json())
+          .then(cities => {
+            let citySelect = document.getElementById('citySelect');
+            citySelect.innerHTML = '<option value="">Select a city</option>';
+            cities.forEach(city => {
+              let option = document.createElement('option');
+              option.value = city._id;
+              option.text = city.name;
+              citySelect.add(option);
+            });
+          });
+        });
+      </script>
+</body>
+</html>
